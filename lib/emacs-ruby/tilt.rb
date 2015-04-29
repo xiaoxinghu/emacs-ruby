@@ -11,11 +11,13 @@ module Tilt
 
       def prepare
         @engine = ::EmacsRuby::Emacs.new
+        @engine.emacs = options[:emacs] || 'emacs'
+        @load = options[:load]
         @output = nil
       end
 
       def evaluate(scope, locals, &block)
-        @output = @engine.org_to_html file
+        @output = @engine.org_to_html file, load: @load
       end
     end
   end

@@ -6,9 +6,9 @@ module EmacsRuby
       @emacs = 'emacs'
     end
 
-    def org_to_html(org_file, load: nil, func: 'org-html-export-to-html')
+    def org_to_html(org_file, load: nil)
       html = nil
-      batch target: org_file, load: load, func: func
+      batch target: org_file, load: load, func: 'org-html-export-to-html'
       html_file = org_file.sub(/.org$/, '.html')
       return html unless File.exist? html_file
       File.open(html_file) do |file|
